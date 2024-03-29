@@ -1,0 +1,49 @@
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+
+class Program
+{
+    static void Main()
+    {
+        // Chemin du fichier contenant le dictionnaire de mots
+        string Dictionnaire = "dictionnaire.txt";
+
+        // Mots fournis par l'utilisateur
+        string[] motsFournis = { "omre", "teac", "tiodi", "cxk", "coall", "bjoet", "qsmieuu", "magei",  };
+
+        // Charger les mots du dictionnaire
+        string[] motsDictionnaire = File.ReadAllLines(Dictionnaire);
+
+        // Dictionnaire pour stocker les correspondances trouvées
+        Dictionary<string, string> correspondances = new Dictionary<string, string>();
+
+        // Parcourir les mots fournis par l'utilisateur
+        foreach (string motFourni in motsFournis)
+        {
+            // Vérifier si le mot correspond à un mot du dictionnaire
+            string correspondance = TrouverCorrespondance(motFourni, motsDictionnaire);
+
+        }
+
+        // Afficher les correspondances trouvées
+        foreach (KeyValuePair<string, string> correspondance in correspondances)
+        {
+            string motFourni = correspondance.Key;
+            string motCorrespondant = correspondance.Value;
+
+            if (string.IsNullOrEmpty(motCorrespondant))
+            {
+                Console.WriteLine($"{motFourni} : aucune correspondance trouvée.");
+            }
+            else
+            {
+                Console.WriteLine($"{motFourni} : {motCorrespondant}");
+            }
+        }
+
+        Console.ReadLine();
+    }
+
+}
